@@ -2,9 +2,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap'
 import { ArrowRightCircle } from 'react-bootstrap-icons'
 import headerImg from '../assets/img/vishwas.jpg'
 import { useEffect, useState } from 'react'
-import 'animate.css'
-import TrackVisibility from 'react-on-screen'
-import myResume from "../assets/Vishwas Resume.pdf"
+import myResume from "../assets/My Resume.pdf"
 
 const Banner = () => {
 

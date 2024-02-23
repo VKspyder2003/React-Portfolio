@@ -3,7 +3,7 @@ import { Navbar, Nav, Container, Button } from 'react-bootstrap'
 import navIcon1 from '../assets/img/nav-icon1.svg'
 import navIcon2 from '../assets/img/nav-icon2.svg'
 import navIcon3 from '../assets/img/nav-icon3.svg'
-import myResume from "../assets/Vishwas Resume.pdf"
+import myResume from "../assets/My Resume.pdf"
 import { ArrowUpCircle, Globe2 } from 'react-bootstrap-icons'
 
 const NavBar = () => {
