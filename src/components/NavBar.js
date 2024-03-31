@@ -72,7 +72,7 @@ const NavBar = () => {
                                 <a href="https://github.com/VKspyder2003/" target="_blank"><img src={navIcon3} alt="Icon" /></a>
                             </div>
                         </span>
-                        <Button href={myResume} target='_blank' className='resume-button' variant="info" >
+                        <Button href='https://drive.google.com/file/d/1lb4YZSfOgah_02uZm4El-qYg9pDGvFx1/view?usp=drive_link' target='_blank' className='resume-button' variant="info" >
                             My Resume
                         </Button>
                     </Navbar.Collapse>
