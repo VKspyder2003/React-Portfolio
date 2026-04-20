@@ -11,7 +11,6 @@ import skill7 from "../assets/img/flask.png";
 import skill8 from "../assets/img/programming.png";
 
 const Skills = () => {
-
     const responsive = {
         superLargeDesktop: {
             breakpoint: { max: 4000, min: 3000 },
@@ -31,47 +30,39 @@ const Skills = () => {
         }
     };
 
+    const skills = [
+        {icon: skill1, title: 'HTML/CSS'},
+        {icon: skill2, title: 'C++'},
+        {icon: skill3, title: 'Python'},
+        {icon: skill4, title: 'Node.js'},
+        {icon: skill5, title: 'React.js'},
+        {icon: skill6, title: 'Linux'},
+        {icon: skill7, title: 'Flask'},
+        {icon: skill8, title: 'Competitive Coding'}
+    ];
+
+    const profiles = [
+        {href: 'https://leetcode.com/kapoorvishwas0123/', label: 'Leetcode'},
+        {href: 'https://auth.geeksforgeeks.org/user/kapoorvishwas0123/', label: 'GeeksforGeeks'},
+        {href: 'https://www.codechef.com/users/vishu_spyder', label: 'CodeChef'},
+        {href: 'https://www.hackerrank.com/profile/kapoorvishwas011', label: 'HackerRank'}
+    ];
+
     return (
-        <section className='skill' id='skills' >
+        <section className='skill' id='skills'>
             <Container>
                 <Row>
                     <Col>
                         <div className='skill-bx'>
                             <h2>Skills</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus rerum ipsum ratione architecto quia mollitia ad dolore obcaecati delectus optio.</p>
-                            <Carousel responsive={responsive} infinite={false} className='skill-slider' >
-                                <div className="item">
-                                    <img src={skill1} alt='Skill Image' />
-                                    <h5>HTML/CSS</h5>
-                                </div>
-                                <div className="item">
-                                    <img src={skill2} alt='Skill Image' />
-                                    <h5>C++</h5>
-                                </div>
-                                <div className="item">
-                                    <img src={skill3} alt='Skill Image' />
-                                    <h5>Python</h5>
-                                </div>
-                                <div className="item">
-                                    <img src={skill4} alt='Skill Image' />
-                                    <h5>Node.Js</h5>
-                                </div>
-                                <div className="item">
-                                    <img src={skill5} alt='Skill Image' />
-                                    <h5>React.Js</h5>
-                                </div>
-                                <div className="item">
-                                    <img src={skill6} alt='Skill Image' />
-                                    <h5>Linux</h5>
-                                </div>
-                                <div className="item">
-                                    <img src={skill7} alt='Skill Image' />
-                                    <h5>Flask</h5>
-                                </div>
-                                <div className="item">
-                                    <img src={skill8} alt='Skill Image' />
-                                    <h5>Competitive Coding</h5>
-                                </div>
+                            <p>These are the technologies and tools I use to build fast, accessible, and maintainable apps.</p>
+                            <Carousel responsive={responsive} infinite={false} className='skill-slider'>
+                                {skills.map((skill, index) => (
+                                    <div className="item" key={index}>
+                                        <img src={skill.icon} alt={skill.title} />
+                                        <h5>{skill.title}</h5>
+                                    </div>
+                                ))}
                             </Carousel>
                         </div>
                     </Col>
@@ -79,18 +70,13 @@ const Skills = () => {
                         <div className='skill-bx'>
                             <p>Links to my coding profiles across various platforms</p>
                             <Row>
-                                <Col>
-                                    <a href='https://leetcode.com/kapoorvishwas0123/' target='_blank' className='coding-profile'><h5 className='coding-profile-text'>Leetcode</h5></a>
-                                </Col>
-                                <Col>
-                                    <a href='https://auth.geeksforgeeks.org/user/kapoorvishwas0123/' target='_blank' className='coding-profile'><h5 className='coding-profile-text'>GeeksforGeeks</h5></a>
-                                </Col>
-                                <Col>
-                                    <a href='https://www.codechef.com/users/vishu_spyder' target='_blank' className='coding-profile'><h5 className='coding-profile-text'>Codechef</h5></a>
-                                </Col>
-                                <Col>
-                                    <a href='https://www.hackerrank.com/profile/kapoorvishwas011' target='_blank' className='coding-profile'><h5 className='coding-profile-text'>Hackerrank</h5></a>
-                                </Col>
+                                {profiles.map((profile, index) => (
+                                    <Col key={index} xs={12} sm={6} className='mb-3'>
+                                        <a href={profile.href} target='_blank' rel='noreferrer' className='coding-profile'>
+                                            <h5 className='coding-profile-text'>{profile.label}</h5>
+                                        </a>
+                                    </Col>
+                                ))}
                             </Row>
                         </div>
                     </Col>
@@ -100,4 +86,4 @@ const Skills = () => {
     );
 }
 
-export default Skills;
+export default Skills; 

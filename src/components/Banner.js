@@ -1,32 +1,28 @@
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import { ArrowRightCircle } from 'react-bootstrap-icons'
 import headerImg from '../assets/img/vishwas.jpg'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback, useRef, useMemo } from 'react'
 import myResume from "../assets/My Resume.pdf"
 
 const Banner = () => {
-
     const [loopNum, setLoopNum] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
     const [text, setText] = useState('')
     const [delta, setDelta] = useState(300 - Math.random() * 100)
-    const [index, setIndex] = useState(1);
+    const deltaRef = useRef(delta);
 
-    const toRotate = ['Web Developer', 'Curious Learner']
+    const toRotate = useMemo(() => ['Web Developer', 'Curious Learner'], [])
     const period = 500
 
+    // Update ref whenever delta changes
     useEffect(() => {
-        let ticker = setInterval(() => {
-            tick();
-        }, delta);
+        deltaRef.current = delta;
+    }, [delta]);
 
-        return () => { clearInterval(ticker) }
-    }, [text])
-
-    const tick = () => {
-        let i = loopNum % toRotate.length;
-        let fullText = toRotate[i];
-        let updatedText = isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1);
+    const tick = useCallback(() => {
+        const i = loopNum % toRotate.length;
+        const fullText = toRotate[i];
+        const updatedText = isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1);
 
         setText(updatedText);
 
@@ -36,39 +32,48 @@ const Banner = () => {
 
         if (!isDeleting && updatedText === fullText) {
             setIsDeleting(true);
-            setIndex(prevIndex => prevIndex - 1);
             setDelta(period);
         } else if (isDeleting && updatedText === '') {
             setIsDeleting(false);
             setLoopNum(loopNum + 1);
-            setIndex(1);
             setDelta(500);
-        } else {
-            setIndex(prevIndex => prevIndex + 1);
         }
-    }
+    }, [loopNum, isDeleting, text, toRotate, period]);
 
+    useEffect(() => {
+        const ticker = setInterval(() => {
+            tick();
+        }, deltaRef.current);
 
-    return (<>
+        return () => clearInterval(ticker);
+    }, [tick]);
+
+    return (
         <section className='banner' id='home'>
             <Container>
                 <Row className='align-items-center'>
                     <Col xs={12} md={6} xl={5}>
-                        <img src={headerImg} alt="Header Img" />
+                        <div className='banner-image-wrapper'>
+                            <img src={headerImg} alt="Portrait of Vishwas Kapoor" />
+                        </div>
                     </Col>
                     <Col xs={12} md={6} xl={7}>
-                        <span className="tagline">Welcome to my Portfolio</span>
+                        <span className="tagline">Welcome to my portfolio</span>
                         <h1>Hi, I'm Vishwas Kapoor</h1>
-                        <h6><span className="txt-rotate" dataPeriod="500" data-rotate={toRotate}><span className="wrap">{text}</span></span></h6>
-                        <span>You can also call me <i>SPYDER</i></span>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non, atque distinctio eius voluptas sunt quidem laborum sit. Est ipsum ducimus quam earum adipisci exercitationem dolore animi placeat deserunt sapiente officia doloremque, commodi saepe. Cumque, ex praesentium quae corporis accusamus atque fugit iusto unde nisi excepturi eveniet harum saepe similique dolores</p>
+                        <h6>
+                            <span className="txt-rotate" dataPeriod="500" data-rotate={toRotate}>
+                                <span className="wrap">{text}</span>
+                            </span>
+                        </h6>
+                        <span className='banner-subtitle'>You can also call me <i>SPYDER</i></span>
+                        <p>I build modern web applications with polished UI, responsive layouts, and efficient frontend practices.</p>
                         <Container>
                             <Row className='align-items-center flex-column flex-md-row'>
-                                <Col>
-                                    <a href='#connect'><Button>Let's Connect <ArrowRightCircle size={'25px'} /> </Button></a>
+                                <Col className='mb-3 mb-md-0'>
+                                    <a href='#connect'><Button className='primary-button'>Let's Connect <ArrowRightCircle size={25} /> </Button></a>
                                 </Col>
                                 <Col>
-                                    <a href={myResume} target='_blank'><Button>See Resume <ArrowRightCircle size={'25px'} /> </Button></a>
+                                    <a href={myResume} target='_blank' rel='noreferrer'><Button className='secondary-button'>See Resume <ArrowRightCircle size={25} /> </Button></a>
                                 </Col>
                             </Row>
                         </Container>
@@ -76,7 +81,7 @@ const Banner = () => {
                 </Row>
             </Container>
         </section>
-    </>)
+    )
 }
 
-export default Banner;
+export default Banner; 
