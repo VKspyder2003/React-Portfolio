@@ -66,7 +66,7 @@ const Banner = () => {
                             </span>
                         </h6>
                         <span className='banner-subtitle'>You can also call me <i>SPYDER</i></span>
-                        <p>I build modern web applications with polished UI, responsive layouts, and efficient frontend practices.</p>
+                        <p>I build scalable software solutions using Python, the MERN stack, and data engineering practices, with a focus on full-stack development, efficient systems, and real-world problem solving.</p>
                         <Container>
                             <Row className='align-items-center flex-column flex-md-row'>
                                 <Col className='mb-3 mb-md-0'>
