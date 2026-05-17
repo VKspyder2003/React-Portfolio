@@ -2,14 +2,14 @@ import { Container, Row, Col, Tab, Nav } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import colorSharp2 from '../assets/img/color-sharp2.png';
-import project1 from '../assets/img/project1.jpg';
-import project2 from '../assets/img/project3.jpg';
-import project3 from '../assets/img/project2.jpg';
+import project1 from '../assets/img/project1.png';
+import project2 from '../assets/img/project2.png';
+import project3 from '../assets/img/project3.png';
 
 const projectTabs = [
     { eventKey: 'first', label: 'Real Time Chat App' },
     { eventKey: 'second', label: 'Keylogger' },
-    { eventKey: 'third', label: 'Upload Fetch App' }
+    { eventKey: 'third', label: 'AI Chess Arena' }
 ];
 
 const projectData = [
@@ -19,8 +19,9 @@ const projectData = [
         title: 'WhatsApp Clone Using React.js',
         description: 'A MERN stack chat application built with Socket.io for real-time messaging and responsive UI.',
         links: [
-            { href: 'https://github.com/VKspyder2003/whatsapp-frontend', label: 'Source Code', variant: 'success' },
-            { href: 'https://whatsapp-frontend-mu.vercel.app/', label: 'Live Website', variant: 'primary' }
+            { href: 'https://github.com/VKspyder2003/whatsapp-frontend', label: 'Frontend Source', variant: 'success' },
+            { href: 'https://github.com/VKspyder2003/whatsapp-backend', label: 'Backend Source', variant: 'success' },
+            { href: 'https://vishwas-frontend-whats.netlify.app/', label: 'Live Website', variant: 'primary' }
         ]
     },
     {
@@ -34,12 +35,13 @@ const projectData = [
     },
     {
         eventKey: 'third',
-        image: project3,
-        title: 'File Upload and Retrieval Web App',
-        description: 'A file management app that allows uploading, listing, and retrieving files with metadata and preview support.',
+        image: project3, 
+        title: 'AI Chess Arena (LLM vs LLM)',
+        description: 'A full-stack React application where Large Language Models play chess against each other autonomously. Features a custom Express backend for strict move parsing, API routing, and move validation using chess.js.',
         links: [
-            { href: 'https://github.com/VKspyder2003/UploadFetchApp', label: 'Source Code', variant: 'success' },
-            { href: 'https://fetch-file-app.onrender.com/', label: 'Live Website', variant: 'primary' }
+            { href: 'https://github.com/VKspyder2003/chess-frontend', label: 'Frontend Source', variant: 'success' },
+            { href: 'https://github.com/VKspyder2003/chess-backend', label: 'Backend Source', variant: 'success' },
+            { href: 'https://chess-vishwas.netlify.app/', label: 'Live Website', variant: 'primary' }
         ]
     }
 ];

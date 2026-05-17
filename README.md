@@ -3,7 +3,7 @@
 A clean and modern personal portfolio built with React. This project highlights skills, projects, and contact details in a polished single-page layout.
 
 ## Live Demo
-https://react-portfolio-five-drab.vercel.app/
+https://vishwas-portfolio-1.netlify.app/
 
 ## What’s included
 - Responsive homepage with animated sections
