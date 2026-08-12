@@ -43,13 +43,14 @@ const Projects = () => {
                             <div className="project-actions-v2 d-flex align-items-center flex-wrap gap-4 mt-2">
                                 {project.links.map((link, idx) => {
                                     const isPrimary = link.type === 'live' || (!hasLiveDemo && idx === 0);
+                                    const isAnchor = link.href.startsWith('#');
                                     
                                     if (isPrimary) {
                                         return (
                                             <Button 
                                                 href={link.href} 
-                                                target="_blank" 
-                                                rel="noreferrer" 
+                                                target={isAnchor ? undefined : "_blank"} 
+                                                rel={isAnchor ? undefined : "noreferrer"} 
                                                 key={idx} 
                                                 className="primary-button project-primary-btn"
                                             >
@@ -60,8 +61,8 @@ const Projects = () => {
                                         return (
                                             <a 
                                                 href={link.href} 
-                                                target="_blank" 
-                                                rel="noreferrer" 
+                                                target={isAnchor ? undefined : "_blank"} 
+                                                rel={isAnchor ? undefined : "noreferrer"} 
                                                 key={idx} 
                                                 className="project-secondary-link"
                                             >

@@ -141,7 +141,7 @@ const Skills = () => {
                                                     </div>
                                                 </div>
                                                 <Card.Text className="profile-card-description">
-                                                    Check my competitive programming stats, school assessment points, and technical articles.
+                                                    Check my programming stats, school assessment points, and technical skillset.
                                                 </Card.Text>
                                             </div>
                                             <div className="mt-3">

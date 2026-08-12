@@ -1,42 +1,42 @@
 export const contributionsData = [
     {
         repository: "WeblateOrg/weblate",
-        title: "REST API improvement / asynchronous project deletion",
-        description: "Updated project deletion to return a 202 Accepted response with an asynchronous task status URL and updated the OpenAPI specification.",
+        title: "checks: make Kashida check less aggressive",
+        description: "Updated character validation checks with Unicode-aware matching for Arabic script to prevent false positives and added robust testing suites.",
+        technologies: ["Python", "Regex", "Unicode", "Testing"],
+        url: "https://github.com/WeblateOrg/weblate/pull/21003",
+        accent: "cyan",
+        pr: "PR #21003",
+        status: "Merged"
+    },
+    {
+        repository: "WeblateOrg/weblate",
+        title: "Return 202 Accepted for asynchronous project deletion API",
+        description: "Updated project deletion REST API endpoint to return 202 Accepted response with Celery task metadata status URL, extending schema docs and tests.",
         technologies: ["Python", "Django", "Celery", "OpenAPI"],
         url: "https://github.com/WeblateOrg/weblate/pull/21020",
         accent: "cyan",
         pr: "PR #21020",
-        status: "Merged"
-    },
-    {
-        repository: "mesonbuild/meson",
-        title: "MSYS2 / MinGW-w64 packaging documentation",
-        description: "Added documentation covering packaging Meson projects for MSYS2/MinGW-w64 environments.",
-        technologies: ["Meson", "MSYS2", "MinGW-w64", "Documentation"],
-        url: "https://github.com/mesonbuild/meson",
-        accent: "teal",
-        pr: "PR #12630",
-        status: "Merged"
+        status: "Open"
     },
     {
         repository: "oracle/opengrok",
-        title: "JavaScript tokenizer improvements",
-        description: "Worked on JavaScript symbol/tokenization behavior and associated tests.",
-        technologies: ["Java", "JavaScript", "Tokenization", "JUnit"],
-        url: "https://github.com/oracle/opengrok",
+        title: "Bound pathological addFile() cost by truncating REFS tokenization",
+        description: "Limited pathological symbol indexing costs by introducing an emitted-token limit in JFlexTokenizer for the REFS field and added JUnit regression test suites.",
+        technologies: ["Java", "JFlex", "Tokenization", "JUnit"],
+        url: "https://github.com/oracle/opengrok/pull/4994",
         accent: "cyan",
-        pr: "PR #4102",
-        status: "Merged"
+        pr: "PR #4994",
+        status: "Open"
     },
     {
-        repository: "VKspyder2003/self-heal",
-        title: "Testing / code quality improvements",
-        description: "Improved tests and code quality while working within an existing open-source codebase.",
-        technologies: ["Python", "Testing", "Pytest", "Git"],
-        url: "https://github.com/VKspyder2003/self-heal",
+        repository: "Johin2/self-heal",
+        title: "Add RepairResult report export and --report CLI option",
+        description: "Implemented report export capabilities (JSON/JSONL serialization) for RepairResult, unified diff-based traces, and added a --report CLI flag.",
+        technologies: ["Python", "Serialization", "CLI", "Testing"],
+        url: "https://github.com/Johin2/self-heal/pull/82",
         accent: "teal",
-        pr: "PR #15",
+        pr: "PR #82",
         status: "Merged"
     }
 ];

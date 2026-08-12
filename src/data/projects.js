@@ -7,17 +7,17 @@ export const featuredProjects = [
     {
         title: "Lakehouse Data Pipeline",
         category: "DATA ENGINEERING",
-        description: "A scalable data pipeline migrating telecom datasets from Cloudera to AWS using PySpark and Apache Iceberg.",
+        description: "A cloud-based data engineering pipeline demonstrating distributed processing, lakehouse architecture, and scalable data transformation using Spark-based technologies.",
         highlights: [
-            "Migrated large-scale telecom datasets from on-prem Cloudera to AWS S3 and EC2.",
-            "Optimized PySpark processing for 5 TB datasets, achieving a 30% runtime reduction.",
-            "Implemented Apache Iceberg formats to support transactional ACID queries and schema evolution."
+            "Distributed processing with PySpark and Apache Spark",
+            "Cloud-based data storage and pipeline architecture",
+            "Apache Iceberg for reliable analytical tables and schema evolution"
         ],
         technologies: ["PySpark", "Databricks", "AWS (S3/EC2)", "Apache Iceberg"],
         image: projectDataPipeline,
         accent: "indigo",
         links: [
-            { label: "GitHub", href: "https://github.com/VKspyder2003/", type: "github" }
+            { label: "See Experience", href: "#experience", type: "href" }
         ]
     },
     {

@@ -21,84 +21,87 @@ const ExperienceEducation = () => {
                             <h4 className="text-white mb-0" style={{ fontSize: '1.2rem', fontWeight: '700', letterSpacing: '0.5px' }}>Professional Experience</h4>
                         </div>
                         <div className="timeline-container">
-                            {/* Infosys - E.ON */}
+                            {/* Infosys Consolidated Experience Card */}
                             <div className="timeline-item">
                                 <div className="timeline-dot"></div>
                                 <Card className="exp-edu-card">
                                     <Card.Body>
-                                        <div className="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                                        {/* Company and Global Title */}
+                                        <div className="d-flex justify-content-between align-items-start flex-wrap mb-4 pb-3 border-bottom border-secondary border-opacity-25">
                                             <div>
-                                                <h4 className="card-item-title text-white mb-0">Infosys</h4>
-                                                <span className="card-item-subtitle text-primary d-block">Specialist Programmer (Client: E.ON UK)</span>
+                                                <h4 className="card-item-title text-white mb-0" style={{ fontSize: '1.35rem', fontWeight: '800' }}>Infosys</h4>
+                                                <span className="card-item-subtitle text-primary d-block font-weight-bold" style={{ fontSize: '0.95rem' }}>Specialist Programmer</span>
                                             </div>
-                                            <span className="card-timeline-date">Feb 2026 – Present</span>
+                                            <span className="card-timeline-date text-white-50" style={{ fontWeight: '500' }}>Dec 2024 – Present</span>
                                         </div>
-                                        <ul className="subproject-bullets ps-3 mb-3">
-                                            <li>Developed reusable PySpark transformation logic to ingest data from Oracle, SharePoint, and SQL Server into Databricks Lakehouse tables while maintaining schema consistency and data quality.</li>
-                                            <li>Replicated and optimized existing Matillion workflows into Databricks pipelines, reducing processing latency.</li>
-                                            <li>Improved pipeline reliability by introducing validation checks and incremental loading, reducing data inconsistencies.</li>
-                                        </ul>
-                                        <div className="experience-tech-row d-flex flex-wrap gap-2 mt-2">
-                                            <span className="tech-badge">PySpark</span>
-                                            <span className="tech-badge">Databricks</span>
-                                            <span className="tech-badge">SQL Server</span>
-                                            <span className="tech-badge">Matillion</span>
-                                        </div>
-                                    </Card.Body>
-                                </Card>
-                            </div>
 
-                            {/* Infosys - Charter */}
-                            <div className="timeline-item mt-4">
-                                <div className="timeline-dot"></div>
-                                <Card className="exp-edu-card">
-                                    <Card.Body>
-                                        <div className="d-flex justify-content-between align-items-start flex-wrap mb-2">
-                                            <div>
-                                                <h4 className="card-item-title text-white mb-0">Infosys</h4>
-                                                <span className="card-item-subtitle text-primary d-block">Specialist Programmer (Client: Charter Communications)</span>
+                                        {/* Segment 1: E.ON UK */}
+                                        <div className="nested-experience-block mb-4 pb-3 border-bottom border-secondary border-opacity-10">
+                                            <div className="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                                                <div>
+                                                    <h5 className="nested-experience-title text-white mb-0" style={{ fontSize: '1.05rem', fontWeight: '600' }}>
+                                                        E.ON UK <span className="text-secondary mx-2">•</span> <span className="text-muted" style={{ fontSize: '0.88rem', fontWeight: '400' }}>Enterprise Data Migration</span>
+                                                    </h5>
+                                                </div>
+                                                <span className="card-timeline-date text-primary" style={{ fontSize: '0.8rem', fontWeight: '600' }}>Feb 2026 – Present</span>
                                             </div>
-                                            <span className="card-timeline-date">May 2025 – Dec 2025</span>
+                                            <ul className="subproject-bullets ps-3 mb-2">
+                                                <li>Built PySpark transformations for enterprise data ingestion into Databricks Lakehouse.</li>
+                                                <li>Migrated and optimized Matillion workflows for Databricks, improving pipeline performance and reliability.</li>
+                                                <li>Added validation and incremental-loading logic to improve data quality.</li>
+                                            </ul>
+                                            <div className="experience-tech-row d-flex flex-wrap gap-2 mt-2">
+                                                <span className="tech-badge">PySpark</span>
+                                                <span className="tech-badge">Databricks</span>
+                                                <span className="tech-badge">SQL Server</span>
+                                                <span className="tech-badge">Matillion</span>
+                                            </div>
                                         </div>
-                                        <ul className="subproject-bullets ps-3 mb-3">
-                                            <li>Migrated large-scale telecom datasets from on-prem Cloudera infrastructure to AWS environments using PySpark, Amazon S3, and EC2.</li>
-                                            <li>Developed automated PySpark scripts and managed DAGs to ensure reliable data orchestration and pipeline execution.</li>
-                                            <li>Optimized PySpark ingestion for 4–5 TB partitioned datasets by introducing partition pruning and executor configuration tuning, reducing runtime by nearly 30%.</li>
-                                            <li>Integrated Apache Iceberg table formats to support scalable schema evolution and improve query efficiency.</li>
-                                        </ul>
-                                        <div className="experience-tech-row d-flex flex-wrap gap-2 mt-2">
-                                            <span className="tech-badge">PySpark</span>
-                                            <span className="tech-badge">AWS S3</span>
-                                            <span className="tech-badge">AWS EC2</span>
-                                            <span className="tech-badge">Apache Iceberg</span>
-                                        </div>
-                                    </Card.Body>
-                                </Card>
-                            </div>
 
-                            {/* Infosys - Trainee */}
-                            <div className="timeline-item mt-4">
-                                <div className="timeline-dot"></div>
-                                <Card className="exp-edu-card">
-                                    <Card.Body>
-                                        <div className="d-flex justify-content-between align-items-start flex-wrap mb-2">
-                                            <div>
-                                                <h4 className="card-item-title text-white mb-0">Infosys</h4>
-                                                <span className="card-item-subtitle text-primary d-block">Specialist Programmer Trainee</span>
+                                        {/* Segment 2: Charter Communications */}
+                                        <div className="nested-experience-block mb-4 pb-3 border-bottom border-secondary border-opacity-10">
+                                            <div className="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                                                <div>
+                                                    <h5 className="nested-experience-title text-white mb-0" style={{ fontSize: '1.05rem', fontWeight: '600' }}>
+                                                        Charter Communications <span className="text-secondary mx-2">•</span> <span className="text-muted" style={{ fontSize: '0.88rem', fontWeight: '400' }}>Big Data Migration</span>
+                                                    </h5>
+                                                </div>
+                                                <span className="card-timeline-date text-primary" style={{ fontSize: '0.8rem', fontWeight: '600' }}>May 2025 – Dec 2025</span>
                                             </div>
-                                            <span className="card-timeline-date">Dec 2024 – May 2025</span>
+                                            <ul className="subproject-bullets ps-3 mb-2">
+                                                <li>Migrated large-scale telecom datasets from on-prem Cloudera to AWS S3 and EC2.</li>
+                                                <li>Optimized PySpark ingestion for 5 TB datasets, achieving a 30% reduction in query runtimes.</li>
+                                                <li>Integrated Apache Iceberg formats to support transactional ACID queries and schema evolution.</li>
+                                            </ul>
+                                            <div className="experience-tech-row d-flex flex-wrap gap-2 mt-2">
+                                                <span className="tech-badge">PySpark</span>
+                                                <span className="tech-badge">AWS S3</span>
+                                                <span className="tech-badge">AWS EC2</span>
+                                                <span className="tech-badge">Apache Iceberg</span>
+                                            </div>
                                         </div>
-                                        <ul className="subproject-bullets ps-3 mb-3">
-                                            <li>Completed intensive training under the Big Data track with hands-on exposure to Python, SQL, PySpark, AWS, and Linux/Unix systems.</li>
-                                            <li>Cleared multiple technical assessments focused on Big Data engineering, cloud infrastructure, and algorithmic problem-solving.</li>
-                                            <li>Developed a PySpark and Unix capstone project involving exploratory analysis of raw datasets to derive insights.</li>
-                                        </ul>
-                                        <div className="experience-tech-row d-flex flex-wrap gap-2 mt-2">
-                                            <span className="tech-badge">Python</span>
-                                            <span className="tech-badge">SQL</span>
-                                            <span className="tech-badge">PySpark</span>
-                                            <span className="tech-badge">AWS</span>
-                                            <span className="tech-badge">Unix/Linux</span>
+
+                                        {/* Segment 3: Specialist Programmer Trainee */}
+                                        <div className="nested-experience-block">
+                                            <div className="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                                                <div>
+                                                    <h5 className="nested-experience-title text-white mb-0" style={{ fontSize: '1.05rem', fontWeight: '600' }}>
+                                                        Specialist Programmer Trainee
+                                                    </h5>
+                                                </div>
+                                                <span className="card-timeline-date text-primary" style={{ fontSize: '0.8rem', fontWeight: '600' }}>Dec 2024 – May 2025</span>
+                                            </div>
+                                            <ul className="subproject-bullets ps-3 mb-2">
+                                                <li>Completed intensive training under the Big Data track spanning Python, SQL, PySpark, AWS, and Linux/Unix.</li>
+                                                <li>Cleared technical assessments in data engineering, cloud infrastructure, and algorithmic problem-solving.</li>
+                                            </ul>
+                                            <div className="experience-tech-row d-flex flex-wrap gap-2 mt-2">
+                                                <span className="tech-badge">Python</span>
+                                                <span className="tech-badge">SQL</span>
+                                                <span className="tech-badge">PySpark</span>
+                                                <span className="tech-badge">AWS</span>
+                                                <span className="tech-badge">Unix/Linux</span>
+                                            </div>
                                         </div>
                                     </Card.Body>
                                 </Card>
