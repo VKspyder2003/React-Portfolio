@@ -1,97 +1,123 @@
-import { Container, Row, Col, Tab, Nav } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { BoxArrowUpRight } from 'react-bootstrap-icons';
+import { featuredProjects, otherProjects } from '../data/projects';
 import colorSharp2 from '../assets/img/color-sharp2.png';
-import project1 from '../assets/img/project1.png';
-import project2 from '../assets/img/project2.png';
-import project3 from '../assets/img/project3.png';
-
-const projectTabs = [
-    { eventKey: 'first', label: 'Real Time Chat App' },
-    { eventKey: 'second', label: 'Keylogger' },
-    { eventKey: 'third', label: 'AI Chess Arena' }
-];
-
-const projectData = [
-    {
-        eventKey: 'first',
-        image: project1,
-        title: 'WhatsApp Clone Using React.js',
-        description: 'A MERN stack chat application built with Socket.io for real-time messaging and responsive UI.',
-        links: [
-            { href: 'https://github.com/VKspyder2003/whatsapp-frontend', label: 'Frontend Source', variant: 'success' },
-            { href: 'https://github.com/VKspyder2003/whatsapp-backend', label: 'Backend Source', variant: 'success' },
-            { href: 'https://vishwas-frontend-whats.netlify.app/', label: 'Live Website', variant: 'primary' }
-        ]
-    },
-    {
-        eventKey: 'second',
-        image: project2,
-        title: 'Keylogger using Python',
-        description: 'A demonstration of keyboard event handling and local logging for educational and research purposes.',
-        links: [
-            { href: 'https://github.com/VKspyder2003/KeyLogger', label: 'Source Code', variant: 'success' }
-        ]
-    },
-    {
-        eventKey: 'third',
-        image: project3, 
-        title: 'AI Chess Arena (LLM vs LLM)',
-        description: 'A full-stack React application where Large Language Models play chess against each other autonomously. Features a custom Express backend for strict move parsing, API routing, and move validation using chess.js.',
-        links: [
-            { href: 'https://github.com/VKspyder2003/chess-frontend', label: 'Frontend Source', variant: 'success' },
-            { href: 'https://github.com/VKspyder2003/chess-backend', label: 'Backend Source', variant: 'success' },
-            { href: 'https://chess-vishwas.netlify.app/', label: 'Live Website', variant: 'primary' }
-        ]
-    }
-];
 
 const Projects = () => {
-    return (
-        <section className="project" id="projects">
-            <Container>
-                <Row>
-                    <Col>
-                        <h2>Projects</h2>
-                        <p>These are a few hand-picked projects that showcase my skills and practical experience.</p>
-                        <Tab.Container id="projects-tab" defaultActiveKey="first">
-                            <Nav variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
-                                {projectTabs.map(tab => (
-                                    <Nav.Item key={tab.eventKey}>
-                                        <Nav.Link eventKey={tab.eventKey}>{tab.label}</Nav.Link>
-                                    </Nav.Item>
+    const renderProjectCard = (project, index, isFeatured = false) => {
+        const hasLiveDemo = project.links.some(l => l.type === 'live');
+        return (
+            <Card className={`project-card-v2 project-accent-${project.accent} h-100`} key={index}>
+                <Row className="g-0 h-100 align-items-stretch">
+                    {/* Image Column: 5/12 = 41.7% width on desktop */}
+                    <Col lg={5} md={5} xs={12} className="project-image-column">
+                        <div className="project-image-container-horizontal h-100">
+                            <img src={project.image} alt={project.title} className="project-img-horizontal" />
+                        </div>
+                    </Col>
+                    {/* Content Column: 7/12 = 58.3% width on desktop */}
+                    <Col lg={7} md={7} xs={12}>
+                        <Card.Body className="d-flex flex-column justify-content-center h-100 p-4 text-start">
+                            <div className="mb-1">
+                                <span className="project-category-label text-uppercase">{project.category}</span>
+                            </div>
+                            <Card.Title className="project-title-v2 mb-2">{project.title}</Card.Title>
+                            
+                            <Card.Text className="project-description-v2 mb-3">
+                                {project.description}
+                            </Card.Text>
+                            
+                            {/* Technical Highlights Bullets */}
+                            <ul className="project-highlights-bullets ps-3 mb-3 text-start">
+                                {project.highlights && project.highlights.map((highlight, hIdx) => (
+                                    <li key={hIdx} className="project-highlight-li">{highlight}</li>
                                 ))}
-                            </Nav>
-                            <Tab.Content id="slideInUp">
-                                {projectData.map(project => (
-                                    <Tab.Pane eventKey={project.eventKey} key={project.eventKey}>
-                                        <div className="d-flex justify-content-center">
-                                            <Card className='project-card'>
-                                                <a href={project.links[0].href} target="_blank" rel='noreferrer'>
-                                                    <Card.Img className='project-image' variant="top" src={project.image} alt={project.title} />
-                                                </a>
-                                                <Card.Body>
-                                                    <Card.Title>{project.title}</Card.Title>
-                                                    <div className='card-text'>{project.description}</div>
-                                                    <div className='project-actions'>
-                                                        {project.links.map(link => (
-                                                            <Button href={link.href} target="_blank" rel='noreferrer' key={link.label} className="projects-link" variant={link.variant}>{link.label}</Button>
-                                                        ))}
-                                                    </div>
-                                                </Card.Body>
-                                            </Card>
-                                        </div>
-                                    </Tab.Pane>
+                            </ul>
+
+                            <div className="project-tech-badges d-flex flex-wrap gap-2 mb-4">
+                                {project.technologies.map((tech, idx) => (
+                                    <span className="tech-badge-v2" key={idx}>{tech}</span>
                                 ))}
-                            </Tab.Content>
-                        </Tab.Container>
+                            </div>
+
+                            <div className="project-actions-v2 d-flex align-items-center flex-wrap gap-4 mt-2">
+                                {project.links.map((link, idx) => {
+                                    const isPrimary = link.type === 'live' || (!hasLiveDemo && idx === 0);
+                                    
+                                    if (isPrimary) {
+                                        return (
+                                            <Button 
+                                                href={link.href} 
+                                                target="_blank" 
+                                                rel="noreferrer" 
+                                                key={idx} 
+                                                className="primary-button project-primary-btn"
+                                            >
+                                                {link.label} <BoxArrowUpRight size={14} className="ms-1" />
+                                            </Button>
+                                        );
+                                    } else {
+                                        return (
+                                            <a 
+                                                href={link.href} 
+                                                target="_blank" 
+                                                rel="noreferrer" 
+                                                key={idx} 
+                                                className="project-secondary-link"
+                                            >
+                                                {link.label} <BoxArrowUpRight size={12} className="ms-1" />
+                                            </a>
+                                        );
+                                    }
+                                })}
+                            </div>
+                        </Card.Body>
                     </Col>
                 </Row>
+            </Card>
+        );
+    };
+
+    return (
+        <section className="project-section" id="projects">
+            <Container>
+                {/* Featured Projects Section */}
+                <Row className="justify-content-center mb-4">
+                    <Col lg={10} className="text-center">
+                        <h2 className="section-title"><span className="section-number">03 /</span> Featured Projects</h2>
+                        <p className="section-subtitle">
+                            A selection of projects spanning software engineering, backend systems, data engineering, and AI applications.
+                        </p>
+                    </Col>
+                </Row>
+                <Row className="justify-content-center mb-5">
+                    {featuredProjects.map((project, index) => (
+                        <Col lg={10} md={12} xs={12} className="mb-5" key={index}>
+                            {renderProjectCard(project, index, true)}
+                        </Col>
+                    ))}
+                </Row>
+
+                {/* Secondary / Other Projects Section */}
+                <Row className="justify-content-center mt-5 mb-4">
+                    <Col lg={10} className="text-center">
+                        <h3 className="sub-section-title">Additional Projects</h3>
+                        <p className="sub-section-subtitle">
+                            Additional systems development and research projects exploring LLMs and deep learning.
+                        </p>
+                    </Col>
+                </Row>
+                <Row className="justify-content-center">
+                    {otherProjects.map((project, index) => (
+                        <Col lg={10} md={12} xs={12} className="mb-4" key={index}>
+                            {renderProjectCard(project, index, false)}
+                        </Col>
+                    ))}
+                </Row>
             </Container>
-            <p className='more-projects'>You can check out more projects on my GitHub <a href="https://github.com/VKspyder2003" target="_blank" rel='noreferrer'>here</a>.</p>
             <img className="background-image-right" src={colorSharp2} alt="background" />
         </section>
     );
 };
 
-export default Projects; 
+export default Projects;

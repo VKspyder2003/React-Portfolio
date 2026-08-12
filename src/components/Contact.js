@@ -2,15 +2,13 @@ import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import emailjs from '@emailjs/browser';
 import contactImg from "../assets/img/contact-img.svg";
-import contact1 from '../assets/img/whatsapp.png'
-import contact2 from '../assets/img/gmail.png'
+import contact1 from '../assets/img/whatsapp.png';
+import contact2 from '../assets/img/gmail.png';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
+        name: '',
         email: '',
-        phone: '',
         message: ''
     });
 
@@ -31,18 +29,11 @@ const Contact = () => {
     const validateForm = () => {
         const newErrors = {};
 
-        // First name validation
-        if (!formData.firstName.trim()) {
-            newErrors.firstName = 'First name is required';
-        } else if (formData.firstName.trim().length < 2) {
-            newErrors.firstName = 'First name must be at least 2 characters';
-        }
-
-        // Last name validation
-        if (!formData.lastName.trim()) {
-            newErrors.lastName = 'Last name is required';
-        } else if (formData.lastName.trim().length < 2) {
-            newErrors.lastName = 'Last name must be at least 2 characters';
+        // Name validation
+        if (!formData.name.trim()) {
+            newErrors.name = 'Name is required';
+        } else if (formData.name.trim().length < 2) {
+            newErrors.name = 'Name must be at least 2 characters';
         }
 
         // Email validation
@@ -51,14 +42,6 @@ const Contact = () => {
             newErrors.email = 'Email is required';
         } else if (!emailRegex.test(formData.email)) {
             newErrors.email = 'Please enter a valid email address';
-        }
-
-        // Phone validation (optional but if provided, must be valid)
-        if (formData.phone.trim()) {
-            const phoneRegex = /^[+]?[1-9][\d]{0,15}$/;
-            if (!phoneRegex.test(formData.phone.replace(/[ \-()]/g, ''))) {
-                newErrors.phone = 'Please enter a valid phone number';
-            }
         }
 
         // Message validation
@@ -88,23 +71,29 @@ const Contact = () => {
             const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
             const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
+            // Split name into first and last for backward compatibility with EmailJS templates
+            const nameParts = formData.name.trim().split(/\s+/);
+            const firstName = nameParts[0] || '';
+            const lastName = nameParts.slice(1).join(' ') || '';
+
             const templateParams = {
-                from_name: `${formData.firstName} ${formData.lastName}`,
+                from_name: formData.name,
                 from_email: formData.email,
-                phone: formData.phone || 'Not provided',
+                phone: 'Not provided',
                 message: formData.message,
                 to_name: 'Vishwas Kapoor',
                 reply_to: formData.email,
+                // Backward-compatible properties:
+                firstName: firstName,
+                lastName: lastName,
             };
 
             await emailjs.send(serviceId, templateId, templateParams, publicKey);
 
             setSubmitStatus('success');
             setFormData({
-                firstName: '',
-                lastName: '',
+                name: '',
                 email: '',
-                phone: '',
                 message: ''
             });
 
@@ -120,18 +109,22 @@ const Contact = () => {
         <section className="contact" id="connect">
             <Container>
                 <Row className="align-items-center">
-                    <Col xs={12} md={6}>
-                        <img src={contactImg} alt="Contact illustration" />
+                    <Col xs={12} md={5} className="d-none d-md-block text-center">
+                        <img src={contactImg} alt="Contact illustration" className="contact-illustration" />
                     </Col>
-                    <Col xs={12} md={6}>
-                        <div>
-                            <h2>Get In Touch</h2>
-                            <div className="contact-links">
-                                <a href="https://api.whatsapp.com/send?phone=917719673374" target="_blank" rel='noreferrer'>
-                                    <img src={contact1} alt="WhatsApp" />
+                    <Col xs={12} md={7}>
+                        <div className="contact-form-wrapper">
+                            <h2 className="section-title"><span className="section-number">06 /</span> Connect</h2>
+                            <p className="contact-intro">
+                                Interested in collaborating, discussing an opportunity, or talking about open source? Feel free to reach out.
+                            </p>
+                            
+                            <div className="contact-links d-flex justify-content-start gap-3 mt-2 mb-4">
+                                <a href="https://api.whatsapp.com/send?phone=917719673374" target="_blank" rel='noreferrer' className="contact-link-pill" title="WhatsApp">
+                                    <img src={contact1} alt="WhatsApp" className="contact-icon" /> <span>WhatsApp</span>
                                 </a>
-                                <a href="mailto:vishwask.cs.20@nitj.ac.in" target="_blank" rel='noreferrer'>
-                                    <img src={contact2} alt="Email" />
+                                <a href="mailto:vishwask.cs.20@nitj.ac.in" target="_blank" rel='noreferrer' className="contact-link-pill" title="Email">
+                                    <img src={contact2} alt="Email" className="contact-icon" /> <span>Email</span>
                                 </a>
                             </div>
 
@@ -148,40 +141,25 @@ const Contact = () => {
                                 </div>
                             )}
 
-                            <form onSubmit={handleSubmit} noValidate>
+                            <form onSubmit={handleSubmit} noValidate className="contact-form-fields">
                                 <Row>
-                                    <Col xs={12} sm={6} className="px-1">
-                                        <div className="form-group">
+                                    <Col xs={12} className="mb-3">
+                                        <div className="form-group-v2">
                                             <input
-                                                name="firstName"
-                                                value={formData.firstName}
+                                                name="name"
+                                                value={formData.name}
                                                 onChange={handleChange}
                                                 type="text"
-                                                placeholder="First Name"
-                                                aria-label="First Name"
-                                                className={errors.firstName ? 'error' : ''}
+                                                placeholder="Your Name"
+                                                aria-label="Your Name"
+                                                className={errors.name ? 'error' : ''}
                                                 required
                                             />
-                                            {errors.firstName && <span className="error-message">{errors.firstName}</span>}
+                                            {errors.name && <span className="error-message">⚠️ {errors.name}</span>}
                                         </div>
                                     </Col>
-                                    <Col xs={12} sm={6} className="px-1">
-                                        <div className="form-group">
-                                            <input
-                                                name="lastName"
-                                                value={formData.lastName}
-                                                onChange={handleChange}
-                                                type="text"
-                                                placeholder="Last Name"
-                                                aria-label="Last Name"
-                                                className={errors.lastName ? 'error' : ''}
-                                                required
-                                            />
-                                            {errors.lastName && <span className="error-message">{errors.lastName}</span>}
-                                        </div>
-                                    </Col>
-                                    <Col xs={12} sm={6} className="px-1">
-                                        <div className="form-group">
+                                    <Col xs={12} className="mb-3">
+                                        <div className="form-group-v2">
                                             <input
                                                 name="email"
                                                 value={formData.email}
@@ -192,39 +170,27 @@ const Contact = () => {
                                                 className={errors.email ? 'error' : ''}
                                                 required
                                             />
-                                            {errors.email && <span className="error-message">{errors.email}</span>}
+                                            {errors.email && <span className="error-message">⚠️ {errors.email}</span>}
                                         </div>
                                     </Col>
-                                    <Col xs={12} sm={6} className="px-1">
-                                        <div className="form-group">
-                                            <input
-                                                name="phone"
-                                                value={formData.phone}
-                                                onChange={handleChange}
-                                                type="tel"
-                                                placeholder="Phone No. (Optional)"
-                                                aria-label="Phone Number"
-                                                className={errors.phone ? 'error' : ''}
-                                            />
-                                            {errors.phone && <span className="error-message">{errors.phone}</span>}
-                                        </div>
-                                    </Col>
-                                    <Col xs={12} className="px-1">
-                                        <div className="form-group">
+                                    <Col xs={12} className="mb-4">
+                                        <div className="form-group-v2">
                                             <textarea
                                                 name="message"
                                                 value={formData.message}
                                                 onChange={handleChange}
-                                                rows="6"
-                                                placeholder="Message"
+                                                rows="5"
+                                                placeholder="Your Message"
                                                 aria-label="Message"
                                                 className={errors.message ? 'error' : ''}
                                                 required
                                             />
-                                            {errors.message && <span className="error-message">{errors.message}</span>}
+                                            {errors.message && <span className="error-message">⚠️ {errors.message}</span>}
                                         </div>
-                                        <button type="submit" disabled={isSubmitting}>
-                                            <span>{isSubmitting ? 'Sending...' : 'Submit'}</span>
+                                    </Col>
+                                    <Col xs={12}>
+                                        <button type="submit" className="contact-submit-btn" disabled={isSubmitting}>
+                                            <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
                                         </button>
                                     </Col>
                                 </Row>
