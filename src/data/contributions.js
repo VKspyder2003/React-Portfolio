@@ -17,7 +17,7 @@ export const contributionsData = [
         url: "https://github.com/WeblateOrg/weblate/pull/21020",
         accent: "cyan",
         pr: "PR #21020",
-        status: "Open"
+        status: "Merged"
     },
     {
         repository: "oracle/opengrok",
