@@ -38,5 +38,15 @@ export const contributionsData = [
         accent: "teal",
         pr: "PR #82",
         status: "Merged"
+    },
+    {
+        repository: "SasanLabs/VulnerableApp",
+        title: "Add Billion Laughs attack levels for XXE",
+        description: "Implemented XML Entity Expansion (Billion Laughs) vulnerability levels, secure parsing limits, cooperative timeouts, and concurrency guards.",
+        technologies: ["Java", "XML", "Cybersecurity", "JAXP"],
+        url: "https://github.com/SasanLabs/VulnerableApp/pull/762",
+        accent: "orange",
+        pr: "PR #762",
+        status: "Open"
     }
 ];
