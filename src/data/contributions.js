@@ -47,6 +47,6 @@ export const contributionsData = [
         url: "https://github.com/SasanLabs/VulnerableApp/pull/762",
         accent: "orange",
         pr: "PR #762",
-        status: "Open"
+        status: "Merged"
     }
 ];
