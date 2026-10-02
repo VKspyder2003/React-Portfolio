@@ -48,5 +48,15 @@ export const contributionsData = [
         accent: "orange",
         pr: "PR #762",
         status: "Merged"
+    },
+    {
+        repository: "SasanLabs/VulnerableApp",
+        title: "Add secure Persistent XSS implementations",
+        description: "Implemented secure Persistent XSS vulnerability levels utilizing pre-persistence input validation and HTML hex output encoding, alongside comprehensive unit test coverage.",
+        technologies: ["Java", "Cybersecurity", "XSS", "Testing"],
+        url: "https://github.com/SasanLabs/VulnerableApp/pull/805",
+        accent: "orange",
+        pr: "PR #805",
+        status: "Merged"
     }
 ];
